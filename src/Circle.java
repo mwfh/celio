@@ -1,39 +1,28 @@
+import processing.core.PApplet;
+
 public class Circle extends Figure {
 
-    public Circle()
-    {
-        super();
+    public Circle(int maxCenterOffset) {
+        super(maxCenterOffset);
     }
 
-    public void paint()
-    {
-        run.fill(color1,color2,color3);
-        run.circle(sx, sy, ex);
+    float radius;
+
+    public void paint(PApplet applet, float x, float y) {
+        applet.fill(color1, color2, color3);
+        applet.circle(x, y, radius*2);
+    }
+
+    public void randomSize() {
+        radius = random(10, maxCenterOffset);
     }
 
     @Override
-    public void paint(int setx, int sety)
-    {
-        run.fill(color1,color2,color3);
-        run.circle(setx, sety, ex);
+    public boolean contains(float x, float y, int mouseX, int mouseY) {
+        float cornerX = x - radius*2;
+        float cornerY = y - radius*2;
+
+        return mouseX >= cornerX && mouseX <= cornerX + width &&
+                mouseY >= cornerY && mouseY <= cornerY + height;
     }
-
-
-    public void randomSize()
-    {
-        ex = random(10,50);
-        ey = random(10,50);
-    }
-
-    public void randomPos()
-    {
-        sx = random(ex,  run.width - ex);
-        sy = random(top+ex, run.height - bottom - ey);
-    }
-
-    public String whatAmI()
-    {
-        return "Circle";
-    }
-
 }
