@@ -1,5 +1,7 @@
 public class Square extends Figure {
 
+    float sx,sy,ex,ey = -1;
+
     int diffx, diffy;
 
     //int color1,color2,color3;
@@ -25,15 +27,6 @@ public class Square extends Figure {
         run.rect(sx, sy, ex, ey);
     }
 
-    @Override
-    public void paint(int setx, int sety)
-    {
-        run.fill(color1,color2,color3);
-        run.rect(setx, sety, ex, ey);
-    }
-
-
-
     public void randomSize()
     {
         ex = random(10,45);
@@ -44,11 +37,6 @@ public class Square extends Figure {
     {
         sx = random(1,  run.width - ex);
         sy = random(top, run.height - bottom - ey);
-    }
-
-    public String whatAmI()
-    {
-        return "Square";
     }
 
 }

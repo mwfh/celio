@@ -65,12 +65,6 @@ public class Main extends PApplet{
 
     //- Auswahl der Figur für den vergleich
     int selFigShow = 0;
-    boolean contVal1 = false;
-    boolean contVal2 = false;
-    boolean contVal3 = false;
-    boolean contVal4 = false;
-    boolean contVal5 = false;
-    boolean contVal6 = false;
 
     public static void main(String[] args) {
         PApplet.main("Main");
@@ -150,7 +144,6 @@ public class Main extends PApplet{
 
         //- Auswahl von Vorgesehen Figur
         selFigShow = (int)random(1, figurePool.size()-1);
-        println(figurePool.get(selFigShow).whatAmI());
 
     }
 
@@ -267,46 +260,20 @@ public class Main extends PApplet{
             text("0", (WinWidth-(lifePos / 2)-10), 38);
         }
 
-        if(figurePool.get(selFigShow).whatAmI() == "Circle")
+        if(figurePool.get(selFigShow).getClass().getSimpleName() == "Circle")
         {
-            figurePool.get(selFigShow).paint((WinWidth - (imgWidth/2)), (WinHeight-(imgHeight/2)));
+            //figurePool.get(selFigShow).paint((WinWidth - (imgWidth/2)), (WinHeight-(imgHeight/2)));
         }
-        if(figurePool.get(selFigShow).whatAmI() == "Square")
+        if(figurePool.get(selFigShow).getClass().getSimpleName()== "Square")
         {
-            figurePool.get(selFigShow).paint((WinWidth - (imgWidth) + 5), (WinHeight-(imgHeight) + 5));
+            // figurePool.get(selFigShow).paint((WinWidth - (imgWidth) + 5), (WinHeight-(imgHeight) + 5));
         }
-        if(figurePool.get(selFigShow).whatAmI() == "Triangle")
+        if(figurePool.get(selFigShow).getClass().getSimpleName() == "Triangle")
         {
 
       //      figurePool.get(selFigShow).paint((WinWidth - (WinWidth - (int)figurePool.get(selFigShow).getSx()/2)), (WinHeight - (WinHeight- (int)figurePool.get(selFigShow).getSy() )/2),(WinWidth - (imgWidth)), (WinHeight-(imgHeight)),(WinWidth - (imgWidth) + 5), (WinHeight-(imgHeight) + 5));
             //figurePool.get(selFigShow).paint((WinWidth - ((WinWidth - (int)figurePool.get(selFigShow).getSx())/2)), (WinHeight - ((WinHeight- (int)figurePool.get(selFigShow).getSy() )/2)), (WinWidth - ((WinWidth - (int)figurePool.get(selFigShow).getEx())/2)), (WinHeight - ((WinHeight- (int)figurePool.get(selFigShow).getEy() )/2)),(WinWidth - ((WinWidth - (int)figurePool.get(selFigShow).getEx2())/2)), (WinHeight - ((WinHeight- (int)figurePool.get(selFigShow).getEy2() )/2)));
 
-            contVal1 = false;
-            contVal2 = false;
-            contVal3 = false;
-            contVal4 = false;
-            contVal5 = false;
-            contVal6 = false;
-
-
-            int setx1, sety1, setx2, sety2, setx3, sety3 = 0;
-            setx1 = (int)figurePool.get(selFigShow).getSx();
-            sety1 = (int)figurePool.get(selFigShow).getSy();
-            setx2 = (int)figurePool.get(selFigShow).getEx();
-            sety2 = (int)figurePool.get(selFigShow).getEy();
-            setx3 = (int)figurePool.get(selFigShow).getEx2();
-            sety3 = (int)figurePool.get(selFigShow).getEy2();
-
-
-            setx1 =  figurePool.get(selFigShow).calcPos(setx1, imgWidth, WinWidth);
-            setx2 =  figurePool.get(selFigShow).calcPos(setx2, imgWidth, WinWidth);
-            setx3 =  figurePool.get(selFigShow).calcPos(setx3, imgWidth, WinWidth);
-
-            sety1 =  figurePool.get(selFigShow).calcPos(sety1, imgHeight, WinHeight);
-            sety2 =  figurePool.get(selFigShow).calcPos(sety2, imgHeight, WinHeight);
-            sety3 =  figurePool.get(selFigShow).calcPos(sety3, imgHeight, WinHeight);
-
-            figurePool.get(selFigShow).paint(setx1, sety1, setx2, sety2, setx3, sety3);
         }
 
     }

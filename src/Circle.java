@@ -1,5 +1,7 @@
 public class Circle extends Figure {
 
+    float sx,sy,ex,ey= -1;
+
     public Circle()
     {
         super();
@@ -9,13 +11,6 @@ public class Circle extends Figure {
     {
         run.fill(color1,color2,color3);
         run.circle(sx, sy, ex);
-    }
-
-    @Override
-    public void paint(int setx, int sety)
-    {
-        run.fill(color1,color2,color3);
-        run.circle(setx, sety, ex);
     }
 
 
@@ -29,11 +24,6 @@ public class Circle extends Figure {
     {
         sx = random(ex,  run.width - ex);
         sy = random(top+ex, run.height - bottom - ey);
-    }
-
-    public String whatAmI()
-    {
-        return "Circle";
     }
 
 }

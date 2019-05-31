@@ -1,5 +1,7 @@
 public class Triangle extends Figure {
 
+    float sx,sy,ex,ey,ex2,ey2 = -1;
+
     public Triangle()
     {
         super();
@@ -11,13 +13,6 @@ public class Triangle extends Figure {
         run.triangle(sx,sy,ex,ey,ex2,ey2);
     }
 
-
-    @Override
-    public void paint(int setx, int sety, int setex,int setey, int setex2, int setey2)
-    {
-        run.fill(color1,color2,color3);
-        run.triangle(setx,sety,setex,setey,setex2,setey2);
-    }
 
     public void randomSize()
     {
@@ -55,19 +50,6 @@ public class Triangle extends Figure {
 //        ex2 = sx-30;
 //        ey2 = sy+42;
         //ex2 = ey2 + ex2;
-    }
-
-    public String whatAmI()
-    {
-        return "Triangle";
-    }
-
-    public int calcPos(int setVal, int size, int window)
-    {
-
-        setVal = (setVal % size) + (window - size);
-
-        return setVal;
     }
 
 
