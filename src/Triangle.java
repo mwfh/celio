@@ -1,57 +1,44 @@
+import processing.core.PApplet;
+
 public class Triangle extends Figure {
 
-    float sx,sy,ex,ey,ex2,ey2 = -1;
-
-    public Triangle()
+    public Triangle(int maxCenterOffset)
     {
-        super();
+        super(maxCenterOffset);
     }
 
-    public void paint()
-    {
-        run.fill(color1,color2,color3);
-        run.triangle(sx,sy,ex,ey,ex2,ey2);
-    }
+    float offsetY1;
+    float offsetX2, offsetY2;
+    float offsetX3, offsetY3;
 
+    public void paint(PApplet applet, float x, float y)
+    {
+        applet.fill(color1,color2,color3);
+        applet.triangle(x,y - offsetY1,
+                x - offsetX2, y + offsetY2,
+                x + offsetX3, y + offsetY3);
+    }
 
     public void randomSize()
     {
-
+        offsetY1 = random(5, maxCenterOffset);
+        offsetX2 = random(5, maxCenterOffset);
+        offsetY2 = random(5, maxCenterOffset);
+        offsetX3 = random(5, maxCenterOffset);
+        offsetY3 = random(5, maxCenterOffset);
     }
 
-    public void randomPos()
-    {
-        int randNum = (int)random(0,5);
-        int mainSign = (int)Math.pow(-1, randNum);
+    @Override
+    public boolean contains(float x, float y, int mouseX, int mouseY) {
 
-        sx = random(1,  run.width - 50);
-        sy = random(top, run.height - bottom - 50);
-
-        if(sx+(mainSign*random(25,45)) > 0)
-        {
-            ex = sx+(mainSign*random(25,45));
-        } else {ex = 0;}
-        if(sy+(mainSign*random(25,45)) > top)
-        {
-            ey = sy+(mainSign*random(25,45));
-        } else {ey = top;}
-        if(sx-(mainSign*random(25,45)) > 0)
-        {
-            ex2 = sx-(mainSign*random(25,45));
-        } else {ex2 = 0;}
-        if(sy+(mainSign*random(25,45)) > top)
-        {
-            ey2 = sy+(mainSign*random(25,45));
-        } else {ey2 = top;}
+        float cornerA = x - offsetX3;
+        float cornerB = y - offsetY3;
 
 
-//        ex = sx+30;
-//        ey = sy+42;
-//        ex2 = sx-30;
-//        ey2 = sy+42;
-        //ex2 = ey2 + ex2;
+        return mouseX >= cornerA && mouseX <= cornerA + width &&
+                mouseY >= cornerB && mouseY <= cornerB + height;
     }
-
-
 }
+
+
 

@@ -1,42 +1,33 @@
+import processing.core.PApplet;
+
 public class Square extends Figure {
 
-    float sx,sy,ex,ey = -1;
+    float width, height;
 
-    int diffx, diffy;
-
-    //int color1,color2,color3;
-
-    public Square()
+    public Square(int maxCenterOffset)
     {
-        super();
+        super(maxCenterOffset);
     }
 
-    public Square(float stx, float sty, float enx, float eny)
-    {
-        super();
-        sx = stx;
-        sy = sty;
-        ex = enx;
-        ey = eny;
-    }
-
-    public void paint()
+    public void paint(PApplet applet, float x, float y)
     {
         println(color1 + ", " + color2 + ", " + color3);
-        run.fill(color1,color2,color3);
-        run.rect(sx, sy, ex, ey);
+        applet.fill(color1,color2,color3);
+        applet.rect(x - width/2, y - height/2, width, height);
     }
 
     public void randomSize()
     {
-        ex = random(10,45);
-        ey = random(10, 45);
+        width = random(10,maxCenterOffset);
+        height = random(10, maxCenterOffset);
     }
 
-    public void randomPos()
-    {
-        sx = random(1,  run.width - ex);
-        sy = random(top, run.height - bottom - ey);
-    }
+    @Override
+    public boolean contains(float x, float y, int mouseX, int mouseY) {
+        float cornerX = x - width/2;
+        float cornerY = y - height/2;
 
+        return mouseX >= cornerX && mouseX <= cornerX + width &&
+                mouseY >= cornerY && mouseY <= cornerY + height;
+    }
 }
